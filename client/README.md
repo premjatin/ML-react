@@ -1,70 +1,135 @@
-# Getting Started with Create React App
+# 🧠 AI Math Solver — Full Stack Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An AI-powered full-stack web app that:
+- Accepts math questions from users
+- Uses an LLM (language model) to generate Python code to solve them
+- Executes the code securely
+- Returns the final answer
+- Saves each question and answer to a MongoDB database
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🛠️ Tech Stack
 
-### `npm start`
+| Layer       | Technology |
+| ----------- | ----------- |
+| Frontend    | React.js    |
+| Backend     | Node.js + Express.js |
+| AI Server   | FastAPI (Python) |
+| Database    | MongoDB (local) |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📂 Project Structure
 
-### `npm test`
+```
+project-root/
+├── client/          # React frontend
+├── server/          # Node.js backend
+├── ai-server/       # FastAPI AI microservice
+├── README.md
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## ⚙️ Setup Instructions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. Clone the repository
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone <repo-url>
+cd project-root
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+### 2. Install Dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### Backend (Node.js)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+cd server
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### Frontend (React.js)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+cd client
+npm install
+```
 
-## Learn More
+#### AI Server (Python)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+cd ai-server
+pip install -r requirements.txt
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+### 3. Start Local MongoDB
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Make sure MongoDB is installed and running locally:
 
-### Analyzing the Bundle Size
+```bash
+mongod
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+### 4. Start Servers
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **AI Server (FastAPI)**
 
-### Advanced Configuration
+```bash
+cd ai-server
+uvicorn main:app --reload --port 8000
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **Backend Server (Node.js)**
 
-### Deployment
+```bash
+cd server
+node index.js
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **Frontend Client (React.js)**
 
-### `npm run build` fails to minify
+```bash
+cd client
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+*Make sure React is running on a different port, like 5173. Create a `.env` file in `/client` with:*
+```
+PORT=5173
+```
+
+---
+
+## 🌐 How It Works
+
+1. User inputs a math question into the frontend.
+2. Frontend sends the question to the Node.js backend.
+3. Backend forwards the question to the FastAPI server.
+4. FastAPI server generates Python code to solve the math question.
+5. Code is executed and the answer is returned.
+6. Backend saves the question and answer into MongoDB.
+7. Frontend displays the final answer to the user.
+
+---
+
+## 📈 Future Improvements
+
+- Fine-tune a real LLM on math problems (e.g., Qwen-0.5B Coder).
+- Better error handling for invalid questions.
+- Secure Python code execution inside a sandbox.
+- Authentication for users (login system).
+- Deployment on cloud (AWS, Vercel, Railway).
+
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
